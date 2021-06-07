@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openActivity2(){
-        val intent = Intent(this, secondActivity::class.java)
+        val intent = Intent(this, UserInfoActivity::class.java)
         startActivity(intent)
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -86,9 +87,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     .addOnCompleteListener{task ->
 
                         if(task.isSuccessful){
+                            FireStoreClass().getUserDetails(this)
                             showErrorSnackBar("You are logged in successfully.", false)
-                            goToMainActivity()
-                            finish()
+                            //finish()
 
                         } else{
                             showErrorSnackBar(task.exception!!.message.toString(),true)
@@ -105,6 +106,16 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("uID",uid)
         startActivity(intent)
+    }
+
+    fun userLoggedInSuccess(user: User){
+
+        Log.i("Email: ", user.email)
+        Log.i("name: ", user.name)
+        Log.i("phone number: ", user.phoneNumber.toString())
+
+        goToMainActivity()
+        finish()
     }
 
 }

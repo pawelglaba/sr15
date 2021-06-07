@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -90,10 +91,18 @@ class RegisterActivity : BaseActivity() {
                 OnCompleteListener <AuthResult>{task ->
                     if(task.isSuccessful){
                         val firebaseUser: FirebaseUser = task.result!!.user!!
-                        showErrorSnackBar("You are registered successfully. Your user id is ${firebaseUser.uid}",false)
+
+                        val user = User(
+                            firebaseUser.uid,
+                            inputName?.text.toString().trim() {it <= ' '},
+                            inputEmail?.text.toString().trim() {it <= ' '},
+                        )
 
 
-                        FirebaseAuth.getInstance().signOut()
+                        FireStoreClass().registerUser(this,user)
+
+                        //showErrorSnackBar("You are re gistered successfully. Your user id is ${firebaseUser.uid}",false)
+                        //FirebaseAuth.getInstance().signOut()
                         finish()
 
 
@@ -105,6 +114,16 @@ class RegisterActivity : BaseActivity() {
             )
 
         }
+    }
+
+    fun userRegistrationSuccess(){
+
+        Toast.makeText(
+            this@RegisterActivity,
+            resources.getString(R.string.register_success),
+            Toast.LENGTH_SHORT
+        ).show()
+
     }
 
 
