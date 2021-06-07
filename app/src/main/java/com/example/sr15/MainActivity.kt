@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private var button: Button? = null
     private var textView: TextView? = null
     private var nextViewButton: Button? = null
+    private var welcomeTextView: TextView? = null
 
     private var numTimesClicked = 0
 
@@ -24,9 +25,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val uID = intent
+        val userID = uID.getStringExtra("uID")
+
         userInput = findViewById(R.id.userInput)
+        userInput?.setText(userID)
+
+
         button = findViewById(R.id.button)
         nextViewButton = findViewById(R.id.nextView)
+        welcomeTextView = findViewById(R.id.welcomeText)
+
+        welcomeTextView?.text = "Welcome ${userID}!";
 
 
         nextViewButton?.setOnClickListener(object : View.OnClickListener{

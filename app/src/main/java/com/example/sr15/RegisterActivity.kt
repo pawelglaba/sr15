@@ -32,21 +32,18 @@ class RegisterActivity : BaseActivity() {
         registerButton?.setOnClickListener{
               //validateRegisterDetails()
             registerUser()
+
        }
 
     }
 
-    fun goToLogin(view: View) {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
+
 
     private fun validateRegisterDetails(): Boolean {
 
         return when{
             TextUtils.isEmpty(inputEmail?.text.toString().trim{ it <= ' '}) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_login),true)
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_email),true)
                 false
             }
             TextUtils.isEmpty(inputName?.text.toString().trim{ it <= ' '}) -> {
@@ -79,8 +76,11 @@ class RegisterActivity : BaseActivity() {
 
     }
 
-
-
+    fun goToLogin(view: View) {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
     private fun registerUser(){
         if (validateRegisterDetails()){
             val login: String = inputEmail?.text.toString().trim() {it <= ' '}
@@ -91,6 +91,11 @@ class RegisterActivity : BaseActivity() {
                     if(task.isSuccessful){
                         val firebaseUser: FirebaseUser = task.result!!.user!!
                         showErrorSnackBar("You are registered successfully. Your user id is ${firebaseUser.uid}",false)
+
+
+                        FirebaseAuth.getInstance().signOut()
+                        finish()
+
 
                     } else{
                         showErrorSnackBar(task.exception!!.message.toString(),true)

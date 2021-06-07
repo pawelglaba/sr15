@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sr15">
         <activity android:name=".BaseActivity"></activity>
-        <activity android:name=".MainActivity2" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".secondActivity" />
-        <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>

@@ -7,13 +7,13 @@
     tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/inputLEmaill"
+        android:id="@+id/inputEmail"
         android:layout_width="305dp"
         android:layout_height="50dp"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textPersonName"
-        android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
@@ -23,15 +23,15 @@
         android:layout_width="305dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Password"
-        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        android:hint="Password"
+        android:inputType="textPersonName|textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLEmaill" />
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="350dp"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:text="Login Activity"
-        app:layout_constraintBottom_toTopOf="@+id/inputLEmaill"
+        app:layout_constraintBottom_toTopOf="@+id/inputEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -92,12 +92,12 @@
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
-        android:onClick="goToRegister"
+        android:onClick="onClick"
         android:text="Register"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2" />
