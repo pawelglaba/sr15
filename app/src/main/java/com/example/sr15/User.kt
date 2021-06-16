@@ -1,6 +1,6 @@
 package com.example.sr15
 
-class User (val id: String = "",
-            val name: String = "",
-            val email: String = "",
-            val phoneNumber: Long = 0)
+class User (var id: String = "",
+            var name: String = "",
+            var email: String = "",
+            var phoneNumber: Long = 0)

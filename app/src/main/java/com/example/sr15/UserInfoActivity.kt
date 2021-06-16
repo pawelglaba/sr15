@@ -74,7 +74,7 @@ class UserInfoActivity : AppCompatActivity() {
     private fun updatePhoneNumber(){
 
         val mobilePhone = uptadePhone?.text.toString().toLong()
-        print("Mobile phone is: $mobilePhone")
+       // print("Mobile phone is: $mobilePhone")
         if(mobilePhone != null) {
             FireStoreClass().updateUserPhoneData(this, mobilePhone)
         }else {

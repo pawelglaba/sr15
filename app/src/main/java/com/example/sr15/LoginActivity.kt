@@ -1,7 +1,6 @@
 package com.example.sr15
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -9,9 +8,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
 
@@ -31,17 +27,15 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         loginButton?.setOnClickListener{
             //validateRegisterDetails()
             logInRegisteredUser()
-
         }
 
     }
-
 
     override fun onClick(view: View?) {
         if(view !=null){
             when (view.id){
 
-                R.id.textView4 ->{
+                R.id.RegisterText ->{
                     val intent = Intent(this, RegisterActivity::class.java)
                     startActivity(intent)
                 }
@@ -76,7 +70,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     private fun logInRegisteredUser(){
 
-
         if(validateLoginDetails()){
             val email = inputEmail?.text.toString().trim(){ it<= ' '}
             val password = inputPassword?.text.toString().trim(){ it<= ' '}
@@ -86,10 +79,15 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
                     .addOnCompleteListener{task ->
 
-                        if(task.isSuccessful){
+                        if(task.isSuccessful && email == "admin@admin.pl"){
+                            showErrorSnackBar("You are logged in successfully to administration panel.", false)
+                            goToAdminPanel()
+                            finish()
+                        }
+
+                        else if(task.isSuccessful){
                             FireStoreClass().getUserDetails(this)
                             showErrorSnackBar("You are logged in successfully.", false)
-                            //finish()
 
                         } else{
                             showErrorSnackBar(task.exception!!.message.toString(),true)
@@ -97,6 +95,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     }
         }
     }
+
+    open fun goToAdminPanel() {
+        val intent = Intent(this, AdminPanel::class.java)
+        startActivity(intent)
+    }
+
 
     open fun goToMainActivity() {
 

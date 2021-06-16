@@ -26,7 +26,6 @@ class FireStoreClass {
                     e
                 )
             }
-
     }
 
     fun getCurrentUserID(): String {
@@ -39,7 +38,8 @@ class FireStoreClass {
         return currentUserID
     }
 
-    fun getUserDetails(activity: Activity){
+
+    fun  getUserDetails(activity: Activity){
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserID())
             .get()
@@ -64,6 +64,7 @@ class FireStoreClass {
         mFireStore.collection(Constants.USERS)
                 .document(getCurrentUserID())
                 .update("phoneNumber",phone)
+
     }
 
 

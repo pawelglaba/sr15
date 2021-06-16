@@ -121,7 +121,7 @@ class RegisterActivity : BaseActivity() {
         Toast.makeText(
             this@RegisterActivity,
             resources.getString(R.string.register_success),
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_LONG
         ).show()
 
     }

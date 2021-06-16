@@ -8,6 +8,22 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.content.DialogInterface
+import android.text.InputFilter
+import android.text.Spanned
+import android.util.Log
+import android.view.*
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,7 +61,6 @@ class MainActivity : AppCompatActivity() {
                 openActivity2()
             }
         })
-
 
 
         textView = findViewById(R.id.printText)
